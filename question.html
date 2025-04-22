@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pergunta {{ question_number }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Pergunta {{ question_number }} / {{ total_questions }}</h1>
+        <p>{{ question.question }}</p>
+        <form method="POST">
+            {% for option in question.options %}
+                <div>
+                    <input type="radio" id="option_{{ loop.index }}" name="question_{{ question.id }}" value="{{ option }}" required>
+                    <label for="option_{{ loop.index }}">{{ option }}</label>
+                </div>
+            {% endfor %}
+            <button type="submit">Próxima Pergunta</button>
+        </form>
+    </div>
+</body>
+</html>

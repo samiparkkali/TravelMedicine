@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados do Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Resultados Finais</h1>
+        <p>A sua pontuação foi de {{ score }} em {{ total }}.</p>
+        {% if score >= 7 %}
+        <p class="experienced-traveler">Vejo que temos um viajante experiente!</p>
+        {% endif %}
+        <a href="{{ url_for('index') }}" class="restart-button">Recomeçar</a>
+    </div>
+</body>
+</html>
