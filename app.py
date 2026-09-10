@@ -1,7 +1,10 @@
+import os
+import secrets
+
 from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
-app.secret_key = 'alegria'
+app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(16))
 
 questions = [
     {
@@ -79,6 +82,9 @@ def start_quiz():
 
 @app.route('/question', methods=['GET', 'POST'])
 def question():
+    if 'question_index' not in session:
+        return redirect(url_for('start_quiz'))
+
     if session['question_index'] >= len(questions):
         return redirect(url_for('results'))
 
